@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<style>
+	.jumbotron {
+		font-size: 20px;
+		padding: 60px;
+		background-color: black;
+		text-align: center;
+		color: black;
+	}
+
+	.main {
+		text-align: center;
+		font-size: 50px;
+	}
+
+	footer {
+		text-align: center;
+		font-size: 20px;
+        }
+
+    table {
+        table-layout: center;
+        border-collapse: collapse;
+        }
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+
+    th,
+    td {
+        padding: 10px;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    input{
+   text-align:center;
+}
+ 
+	
+</style>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<header>
+	<div class="jumbotron">
+		<h1>PT.Once Sejahtera</h1>
+        <img src="ele.png" width="150" height="100">
+</header>
+
+<body>
+     <table align="center">
+        <tr>
+            <th>Kategori</th>
+            <th>Abdomen</th>
+            <th>Tarif per-KWH</th>
+            <th>Pajak</th>
+        </tr>
+        <tr>
+            <td>Sosial</td>
+            <td>10000</td>
+            <td>300</td>
+            <td>0%</td>
+        </tr>
+        <tr>
+            <td>Rumah</td>
+            <td>30000</td>
+            <td>500</td>
+            <td>10%</td>
+        </tr>
+        <tr>
+            <td>Apartemen</td>
+            <td>50000</td>
+            <td>750</td>
+            <td>15%</td>
+        </tr>
+        <tr>
+            <td>Industri</td>
+            <td>75000</td>
+            <td>1000</td>
+            <td>20%</td>
+        </tr>
+        <tr>
+            <td>Villa</td>
+            <td>100000</td>
+            <td>1250</td>
+            <td>25%</td>
+        </tr>
+     </table>
+
+    <input type="text" name="nama" placeholder="input nama" id="nama">
+	<input type="text" name="Pemakaian listrik" placeholder="jumlah hari Pemakaian listrik" id=jhpl>
+
+    <select name="kategori" id="kategori">
+        <option value="Sosial">Sosial</option>
+        <option value="Rumah">Rumah</option>
+        <option value="Apartemen">Apartemen</option>
+        <option value="industri">Industri</option>
+        <option value="Villa">Villa</option>
+      </select>
+      <button type="button" id="button">Enter</button>
+      
+    <script> 
+    document.getElementById("button").onclick = function(){
+    var nama = document.getElementById("nama").value;
+    var kategori = document.getElementById("kategori").value;
+    var jumlahPemakaian = document.getElementById("jhpl").value;
+    
+    const kategori2 = ["Sosial","Rumah","Apartemen","Industri","Villa"];
+    const abodemen = [10000, 30000, 50000, 75000, 100000];
+    const tarif = [300, 500, 750, 10000, 1250];
+    const pajak = [0,10,15,20,25];
+    var sparing = "";
+
+    if (nama == ""){
+        alert('Field Nama harus diisi!');
+    }
+    if (jumlahPemakaian == 0){
+        alert('Field Jumlah pemakaian harus diisi');
+    }
+    if (jumlahPemakaian > 30) {
+        Pemakaian = 0;
+        alert("Jumlah hari tidak valid");
+        }
+    var abd, pjk,trf;
+    for(let i = 0; i< 5; i++)
+        if(kategori[i]==kategori){
+            abd = abodemen[i];
+            trf = tarif[i];
+            pjk = pajak[i];
+        }
+    for (let i = 1; i <= jumlahPemakaian; i++) 
+          {
+            // sparing += `<tr> <td>${i}</td> <td>${i*trf}</td> <td>${kons}</td> <td>${i*tarif+kons}</td> </tr>`;
+          }
+          
+          document.getElementById("tampilnama").innerHTML = nama;
+          document.getElementById("tampilkategori").innerHTML = kategori;
+          document.getElementById("tampiljumlah").innerHTML = jumlahPemakaian;
+          document.getElementById("kategori").innerHTML = sparing;
+          document.getElementById("pajak").innerHTML = (pjk/100)*(jumlahPemakaian*trf+kons);
+          document.getElementById("subtotal").innerHTML = jumlahPemakaian*trf+kons;
+          document.getElementById("bayar").innerHTML = jumlahPemakaian*trf+kons+(pjk/100)*(jumlahPemakaian*trf+kons);
+          
+      
+      
+    }
+    
+    </script>
+    <h2>Tagihan Listrik</h2>
+    <table align="center" id="listrik">
+        <tr>
+            <td>Nama pelanggan</td>
+            <td id="tampilnama"></td>
+        </tr>
+        <tr>
+            <td>Kategori</td>
+            <td><span id="tampilkategori"</span></td>
+        </tr>
+        <tr>
+            <td>Jumlah pemakaian</td>
+            <td><span id="tampiljumlah"</span></td>
+        </tr>
+    </table>
+
+    <div class="transaksi">
+        <table id="listrik" align="center">
+            <th>Rincian Tagihan</th>
+            <tr>
+                <td>Subtotal</td>
+                <td><span id="subtotal"</span></td>
+            </tr>
+            <tr>
+                <td>Pajak</td>
+            <td><span id="pajak"</span></td>
+            </tr>
+            <tr>
+               
+            </tr><td>Bayar</td>
+            <td><span id="bayar"</span></td>
+        </table>
+
+    <script src="js.js"> </script>
+</body>
+
+
+
+<footer>
+	<p>Praktikum-6</p>
+</footer>
+
+</html>
